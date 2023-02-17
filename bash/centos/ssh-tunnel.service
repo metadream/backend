@@ -1,0 +1,13 @@
+[Unit]
+Description=Auto SSH Local Tunnel
+After=network-online.target sshd.service
+
+[Service]
+Type=simple
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval=30" -o "ServerAliveCountMax=3" -qnCNTR 0.0.0.0:7777:localhost:80 mophisoft@34.92.215.226
+ExecReload=/bin/kill $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

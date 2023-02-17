@@ -1,0 +1,15 @@
+server {
+  listen 80;
+  server_name _;
+  access_log off;
+  return 444;
+}
+
+server {
+  listen 443 ssl;
+  server_name _;
+  access_log off;
+  ssl_certificate /etc/nginx/sslcert/example.com.cer;
+  ssl_certificate_key /etc/nginx/sslcert/example.com.key;
+  return 444;
+}

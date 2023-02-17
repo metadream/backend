@@ -1,0 +1,13 @@
+# /etc/fstab
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point> <type> <options> <dump> <pass>
+
+//10.0.0.2/Temp /mnt/nas/Temp cifs credentials=/home/xehu/.smbpasswd,dir_mode=0777,file_mode=0777 0 0
+//10.0.0.2/Cloud /mnt/nas/Cloud cifs credentials=/home/xehu/.smbpasswd,dir_mode=0777,file_mode=0777 0 0
+//10.0.0.2/Media /mnt/nas/Media cifs credentials=/home/xehu/.smbpasswd,dir_mode=0777,file_mode=0777 0 0
+//10.0.0.2/Photo /mnt/nas/Photo cifs credentials=/home/xehu/.smbpasswd,dir_mode=0777,file_mode=0777 0 0
+//10.0.0.2/Taboo /mnt/nas/.Taboo cifs credentials=/home/xehu/.smbpasswd,dir_mode=0777,file_mode=0777 0 0

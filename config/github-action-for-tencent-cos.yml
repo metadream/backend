@@ -1,0 +1,50 @@
+# GitHub Actions = workflow + job + step + action
+
+# 工作流程：持续集成一次运行的过程
+name: Tencent Cos Deployment
+
+# 工作流程触发条件
+on:
+  push:
+    branches: [master]
+
+# 任务：工作流程由一个或多个可以依次或并行运行的任务组成
+jobs:
+  # 任务ID：此工作流程仅包含一个叫 cos-deployment 的任务
+  cos-deployment:
+    # 运行所需虚拟机环境（必要字段）
+    runs-on: ubuntu-latest
+
+    # 步骤：每个任务由多个步骤构成
+    steps:
+      # 步骤1：签出储库以便工作作业访问
+      - name: Checkout source
+        uses: actions/checkout@master
+        with:
+          submodules: true
+
+      # 步骤2：安装 python
+      - name: Setup python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.6'
+
+      # 步骤3：安装和配置 COS 命令行工具
+      # secrets 需预先在存储库的 settings -> secrets 配置
+      - name: Setup coscmd
+        env:
+          SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          BUCKET: ${{ secrets.COS_BUCKET }}
+          REGION: ${{ secrets.COS_REGION }}
+        run: |
+          pip install coscmd
+          coscmd config -a $SECRET_ID -s $SECRET_KEY -b $BUCKET -r $REGION
+
+      # 步骤4：将存储库部署到 COS 根目录
+      #（-rs 跳过 md5 相同的文件，--delete 删除存储库已经删除的文件，-f 忽略确认）
+      - name: Deploy to cos
+        run: |
+          coscmd upload -rs --delete -f font/ /font
+          coscmd upload -rs --delete -f icon/ /icon
+          coscmd upload -rs --delete -f lib/ /lib

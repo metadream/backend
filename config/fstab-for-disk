@@ -1,0 +1,15 @@
+# /etc/fstab
+# Created by anaconda on Sun Mar 17 00:24:49 2019
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+
+/dev/mapper/centos_nas-root /                       xfs     defaults        0 0
+UUID=42c8d4e5-fc5a-4cdf-9e6b-04cd616944a0 /boot                   xfs     defaults        0 0
+/dev/mapper/centos_nas-swap swap                    swap    defaults        0 0
+
+UUID=7355193d-6918-4f83-bc6c-94a161771393 /mnt/frq  ext4  defaults  0 0
+UUID=341d79e8-3fd3-4655-b29c-82f1cbe0680e /mnt/nas  ext4  defaults  0 0
+
+#UUID=34137ad5-edf6-45db-8242-55a25a1f2c3f /mnt/bak  ext4  defaults  0 0
+#UUID=F6562CF5562CB86F /mnt/usb  ntfs-3g  defaults  0 0

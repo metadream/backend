@@ -1,0 +1,8 @@
+# check sslsert every day at 1:00
+0 1 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
+
+# backup every monday at 2:00
+0 2 * * 1 /root/backup.sh > /dev/null 2>&1
+
+# check domain dns every 30 minutes
+*/30 * * * * /root/dnspod.sh >> /var/log/dnspod.log
