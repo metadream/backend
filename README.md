@@ -3,5 +3,5 @@ Server-side application configuration and executable scripts.
 
 ### Usage
 ```
-wget https://cdn.unpkg.net/backend/ddns/cloudflare.sh
+wget https://cdn.unpkg.net/backend/xxxx.sh
 ```
