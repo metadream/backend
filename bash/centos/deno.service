@@ -1,0 +1,13 @@
+[Unit]
+Description=Deno Application
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/deno-app
+ExecStart=/root/.deno/bin/deno run --allow-net --allow-read mod.ts --prod
+StandardOutput=file:/root/deno-app.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
